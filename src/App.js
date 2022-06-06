@@ -1,8 +1,10 @@
-import NavBar from './components/NavBar.js'
+import NavBar from './components/NavBar/NavBar.js'
+import Footer from './components/Footer/Footer.js'
 
 const App = () => {
   return (
-    <NavBar/>
+    <NavBar/>,
+    <Footer/>
     )
 
 }
