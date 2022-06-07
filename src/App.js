@@ -1,10 +1,12 @@
 import NavBar from './components/NavBar/NavBar.js'
-import Footer from './components/Footer/Footer.js'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer.js'
 
 const App = () => {
   return (
-    <NavBar/>,
-    <Footer/>
+    <>
+    <NavBar/>
+    <ItemListContainer greeting="Bienvenido a la pagina de Sevuchitas"/>
+    </>
     )
 
 }
