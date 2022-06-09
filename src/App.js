@@ -1,5 +1,5 @@
-import NavBar from './components/NavBar/NavBar.js'
-import ItemListContainer from './components/ItemListContainer/ItemListContainer.js'
+import NavBar from './components/NavBar/index.js'
+import ItemListContainer from './components/ItemListContainer/index.js'
 
 const App = () => {
   return (
@@ -8,7 +8,6 @@ const App = () => {
     <ItemListContainer greeting="Bienvenido a la pagina de Sevuchitas" />
     </>
     )
-
 }
 
 export default App;
