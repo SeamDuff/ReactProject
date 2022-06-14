@@ -1,0 +1,9 @@
+h1{
+  text-align: center;
+}
+
+.divItemListContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

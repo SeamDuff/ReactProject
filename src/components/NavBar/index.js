@@ -1,17 +1,19 @@
 import CartWidget from "../CartWidget"
-import styles from "./styles.css"
+import './styles.css'
 
 const NavBar = () => {
     return(
     <header>
-        <h1 className="logo">Sevuchitas</h1>
-        <nav className="navBar">
-            <a href="#">Inicio</a>
-            <a href="#">Productos</a>
-            <a href="#">About</a> 
-            <a href="#">Contacto</a>
-            <CartWidget/>
-        </nav>
+        <div className="navBar">
+            <h1>Sevuchitas</h1>
+            <nav className="nav">
+                    <a href="#">Inicio</a>
+                    <a href="#">Productos</a>
+                    <a href="#">About</a> 
+                    <a href="#">Contacto</a>
+                    <CartWidget/>
+            </nav>
+        </div>
     </header>
     )
 }

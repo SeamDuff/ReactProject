@@ -1,4 +1,4 @@
-import styles from './styles.css'
+import './styles.css'
 import { useState } from 'react'
 
 
@@ -27,12 +27,13 @@ const ItemCount = ({stock,initial, onAdd}) => {
   }
 
   return(
-    <>
+    <div className='divCantidad'>
     <button onClick={disCount}>-</button>
-    <button onClick={addCount}>+</button> 
-      <p>El contador es: {count}</p>
+    <p>{count}</p>
+    <button onClick={addCount}>+</button>
+
     <button onClick={deleteCount}>Confirmar</button>
-    </>
+    </div>
   )
 }
 
