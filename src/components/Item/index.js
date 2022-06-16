@@ -1,12 +1,10 @@
 import './styles.css'
-import ItemCount from '../ItemCount'
 
-const Item = ({id, name, image, stock}) => {
+const Item = ({id, name, image}) => {
   return(
     <div className='divItem' key={id}>
       <h1>{name}</h1>
-      <img src={image} alt={name} />
-      <ItemCount stock={stock} initial={1} onAdd={()=>{}}/>
+      <img className='imgSize' src={image} alt={name} />
       <button> Mostrar Detalle </button>
     </div>
   )
