@@ -1,26 +1,27 @@
 import './styles.css'
 import { useState, useEffect } from 'react'
 import ItemDetail from '../ItemDetail'
-import customFetch from '../../utils/customFetch'
-import producto from '../../utils/producto.js'
+import getProducts from '../../utils/customFetch.js'
 
 const ItemDetailContainer = ({title}) => {
 
-  const [item, setItem] = useState([])
+  const [item, setItem] = useState({})
 
-    useEffect(() => {
-        customFetch(2000, producto)
-        .then(result => setItem(result))
-    },[item])
+    useEffect(() =>{
+      getProducts()
+      .then(result => setItem(result.find(result => result.id === '1')))
+    },[])
 
   return (
     <div>
       <h1>{title}</h1>
-
       <div className='divItemDetailContainer'>
-        <ItemDetail product={item}/>
+        
+        {
+          item ? <ItemDetail product={item}/> :
+          <div> Loading.. </div>
+        }
       </div>
-
     </div>
   )
 }

@@ -1,26 +1,29 @@
 import './styles.css'
 import { useState, useEffect } from 'react'
 import ItemList from '../ItemList'
-import customFetch from '../../utils/customFetch'
-import productos from '../../utils/productos'
+import getProducts from '../../utils/customFetch'
 
 const ItemListContainer = (props) => {
     
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        customFetch(2000, productos)
+        getProducts()
         .then(result => setItems(result))
-    },[items])
+    },[])
 
     return(
         <div>
         <h1>{props.greeting}</h1>
 
-        <div className='divItemListContainer'>
-            <ItemList products={items}/>
-        </div>
-
+        {
+          items ? 
+          <div className='divItemListContainer'>
+          <ItemList products={items}/>
+          </div> 
+        :
+          <div> Loading.. </div>
+        }
         </div>
     )
 }
