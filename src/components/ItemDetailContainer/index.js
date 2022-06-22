@@ -1,29 +1,25 @@
-import './styles.css'
-import { useState, useEffect } from 'react'
-import ItemDetail from '../ItemDetail'
-import getProducts from '../../utils/customFetch.js'
+import { useContext } from 'react';
+import ItemDetail from '../ItemDetail';
+import { useParams } from 'react-router-dom';
+import { ProductsContext } from '../../context/productsContext';
 
-const ItemDetailContainer = ({title}) => {
-
-  const [item, setItem] = useState({})
-
-    useEffect(() =>{
-      getProducts()
-      .then(result => setItem(result.find(result => result.id === '1')))
-    },[])
+const ItemDetailContainer = ({ title }) => {
+  const { id } = useParams();
+  const products = useContext(ProductsContext);
+  const selectedProduct = products.find(product => product.id === id);
 
   return (
     <div>
       <h1>{title}</h1>
-      <div className='divItemDetailContainer'>
-        
-        {
-          item ? <ItemDetail product={item}/> :
+      <div className="divItemDetailContainer">
+        {selectedProduct ? (
+          <ItemDetail product={selectedProduct} />
+        ) : (
           <div> Loading.. </div>
-        }
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ItemDetailContainer
+export default ItemDetailContainer;

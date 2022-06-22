@@ -1,5 +1,9 @@
-.divItemDetail{
+.divItemDetailContainer{
   display: flex;
   flex-direction: row;
   margin: 20px;
+}
+
+.divItemDetail{
+  margin-left: 10px;
 }

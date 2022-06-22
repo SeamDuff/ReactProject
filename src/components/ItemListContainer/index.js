@@ -1,31 +1,63 @@
-import './styles.css'
-import { useState, useEffect } from 'react'
-import ItemList from '../ItemList'
-import getProducts from '../../utils/customFetch'
+import React from 'react';
+import './styles.css';
+import { useState, useContext } from 'react';
+import ItemList from '../ItemList';
+import { ProductsContext } from '../../context/productsContext';
+import { PRODUCTS_CATEGORY_LIST } from '../../constants/products';
 
-const ItemListContainer = (props) => {
-    
-    const [items, setItems] = useState([])
+const ItemListContainer = props => {
+  const products = useContext(ProductsContext);
 
-    useEffect(() => {
-        getProducts()
-        .then(result => setItems(result))
-    },[])
+  const [checkedCategories, setCheckedCategories] = useState([]);
 
-    return(
-        <div>
-        <h1>{props.greeting}</h1>
+  const selectedProducts = checkedCategories.length
+    ? products.filter(product => checkedCategories.includes(product.category))
+    : products;
 
-        {
-          items ? 
-          <div className='divItemListContainer'>
-          <ItemList products={items}/>
-          </div> 
-        :
-          <div> Loading.. </div>
-        }
+  // Add/Remove checked item from list
+  const handleCheck = event => {
+    var updatedList = [...checkedCategories];
+    if (event.target.checked) {
+      updatedList = [...checkedCategories, event.target.value];
+    } else {
+      updatedList.splice(checkedCategories.indexOf(event.target.value), 1);
+    }
+    setCheckedCategories(updatedList);
+  };
+
+  // Return classes based on whether item is checked
+  const isChecked = item =>
+    checkedCategories.includes(item)
+      ? 'selectedCheckListItem'
+      : 'checkListItem';
+
+  return (
+    <div>
+      <h1>{props.greeting}</h1>
+
+      <div className="checkListContainer">
+        {PRODUCTS_CATEGORY_LIST.map((item, index) => (
+          <label className={isChecked(item)} key={index}>
+            <input
+              readOnly
+              value={item}
+              type="checkbox"
+              onChange={handleCheck}
+            />
+            <span>{item}</span>
+          </label>
+        ))}
+      </div>
+
+      {products ? (
+        <div className="divItemListContainer">
+          <ItemList products={selectedProducts} />
         </div>
-    )
-}
+      ) : (
+        <div> Loading.. </div>
+      )}
+    </div>
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;
