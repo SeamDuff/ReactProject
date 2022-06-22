@@ -11,7 +11,7 @@ const Item = props => {
 
   return (
     <div className="divItem" key={props.product.id}>
-      <h3>{props.product.flavour}</h3>
+      <h3>{props.product.category + ' de ' + props.product.flavour}</h3>
       <img
         className="imgSize"
         src={props.product.image}
