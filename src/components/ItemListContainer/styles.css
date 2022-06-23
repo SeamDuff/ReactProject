@@ -25,6 +25,10 @@ h1{
   border-radius: 6px;
 }
 
+.checkListItem:hover{
+  background-color: lightgoldenrodyellow;
+}
+
 .selectedCheckListItem{
   background-color: lightgoldenrodyellow;
   padding: 5px 10px;

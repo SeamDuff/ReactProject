@@ -1,7 +1,7 @@
 import './styles.css';
+
 import { useState } from 'react';
 
-// eslint-disable-next-line no-unused-vars
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, changeCount] = useState(initial);
 
@@ -19,22 +19,24 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
-  //se vuelve el contador a initial = 1
-  const deleteCount = () => {
-    changeCount(initial);
-    alert('Pedido Confirmado');
+  const sendCountToOnAdd = () => {
+    onAdd(count);
+    changeCount(0);
   };
 
   return (
-    <div className="divItemCountContainer">
-      <div className="countContainer">
-        <button onClick={disCount}>-</button>
-        <p>{count}</p>
-        <button onClick={addCount}>+</button>
+    <>
+      <div className="itemCountContainer">
+        <div className="countContainer">
+          <button onClick={disCount}>-</button>
+          <p>{count}</p>
+          <button onClick={addCount}>+</button>
+        </div>
+        <div className="itemCountConfirmButton">
+          <button onClick={sendCountToOnAdd}>Confirmar</button>
+        </div>
       </div>
-
-      <button onClick={deleteCount}>Confirmar</button>
-    </div>
+    </>
   );
 };
 

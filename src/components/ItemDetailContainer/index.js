@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import ItemDetail from '../ItemDetail';
 import { useParams } from 'react-router-dom';
+
 import { ProductsContext } from '../../context/productsContext';
+import ItemDetail from '../ItemDetail';
 
 const ItemDetailContainer = ({ title }) => {
   const { id } = useParams();

@@ -1,9 +1,10 @@
-import React from 'react';
 import './styles.css';
-import { useState, useContext } from 'react';
-import ItemList from '../ItemList';
-import { ProductsContext } from '../../context/productsContext';
+
+import React, { useContext, useState } from 'react';
+
 import { PRODUCTS_CATEGORY_LIST } from '../../constants/products';
+import { ProductsContext } from '../../context/productsContext';
+import ItemList from '../ItemList';
 
 const ItemListContainer = props => {
   const products = useContext(ProductsContext);
