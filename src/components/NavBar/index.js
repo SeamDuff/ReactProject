@@ -2,6 +2,8 @@ import './styles.css';
 
 import { Link } from 'react-router-dom';
 
+import CartWidget from '../CartWidget';
+
 const NavBar = () => {
   return (
     <header>
@@ -13,9 +15,7 @@ const NavBar = () => {
           <Link to="/"> Inicio </Link>
           <Link to="/section/Nosotros"> Nosotros </Link>
           <Link to="/section/Contacto"> Contacto </Link>
-          <Link to="Cart">
-            <span className="material-symbols-outlined">shopping_cart</span>
-          </Link>
+          <CartWidget />
         </nav>
       </div>
     </header>

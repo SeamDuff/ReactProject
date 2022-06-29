@@ -1,24 +1,25 @@
 import './styles.css';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Routes from '../../constants/routes';
+import { CartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount';
 
 const ItemDetail = ({ product }) => {
-  const [cartCount, changeCartCount] = useState(0);
   const navigate = useNavigate();
+  const { addToCart } = useContext(CartContext);
+  const [cartCount, changeCartCount] = useState(0);
 
   const showCart = () => {
     navigate(`../${Routes.Cart}`);
   };
 
   const onAdd = cartQuantity => {
+    addToCart(product, cartQuantity);
     changeCartCount(cartQuantity);
   };
-
-  console.log(`Cantidad del Carrito: ${cartCount}`);
 
   return (
     <div className="itemDetailContainer">
