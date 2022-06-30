@@ -3,7 +3,7 @@ import './styles.css';
 import React, { useContext, useState } from 'react';
 
 import { PRODUCTS_CATEGORY_LIST } from '../../constants/products';
-import { ProductsContext } from '../../context/ProductsContext';
+import { ProductsContext } from '../../context/ProductsContext.js';
 import ItemList from '../ItemList';
 
 const ItemListContainer = props => {
