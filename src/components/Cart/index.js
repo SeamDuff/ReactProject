@@ -13,7 +13,7 @@ const Cart = () => {
   const continueShopping = () => {
     navigate(`../${Routes.Home}`);
   };
-
+  console.log(cart);
   return (
     <div className="page">
       <div className="page__in"></div>
