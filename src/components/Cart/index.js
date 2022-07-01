@@ -7,14 +7,22 @@ import Routes from '../../constants/routes';
 import { CartContext } from '../../context/CartContext';
 
 const Cart = () => {
-  const { cart, removeProductFromCart, clearCart } = useContext(CartContext);
+  const { cart, removeProductFromCart, clearCart, totalQuantity, totalPrice } =
+    useContext(CartContext);
   const navigate = useNavigate();
 
   const continueShopping = () => {
     navigate(`../${Routes.Home}`);
   };
-  console.log(cart);
-  return (
+
+  return cart.length === 0 ? (
+    <div className="noProductsInCart">
+      <h4>Todavia no hay ningun producto en tu carrito</h4>
+      <button className="cardBtn" onClick={continueShopping}>
+        Ver Productos
+      </button>
+    </div>
+  ) : (
     <div className="page">
       <div className="page__in"></div>
 
@@ -67,23 +75,18 @@ const Cart = () => {
           </div>
         ))}
       </div>
+      <div className="cartFooter">
+        <span>Precio total: {parseFloat(totalPrice())}</span>
+        <span>Cantidad de productos: {totalQuantity()}</span>
+      </div>
       <div className="cart__clear">
         <button className="cardBtn" onClick={clearCart}>
           Empty Cart
         </button>
         <button className="cardBtn" onClick={continueShopping}>
-          Add more products
+          Agregar mas productos
         </button>
       </div>
-
-      {/* <div className="cartButtonContainer">
-        <button className="removeBtn" onClick={removeProductFromCart}>
-          Remove Product
-        </button>
-        <button className="cleanCart" onClick={clearCart}>
-          Clean Cart
-        </button>
-      </div> */}
     </div>
   );
 };

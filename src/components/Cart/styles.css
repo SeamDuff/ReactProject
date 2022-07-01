@@ -549,3 +549,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.noProductsInCart{
+  width: 400px;
+  text-align: center;
+  border: 1px solid #d9d9d9;
+  padding: 1.375rem;
+  margin: 1rem auto;
+}
+
+.cartFooter {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5rem;
+}

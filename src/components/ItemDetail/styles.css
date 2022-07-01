@@ -16,6 +16,10 @@
   align-items: center;
 }
 
+.confirmButtonContainer{
+  display: flex;
+  flex-direction: column;
+}
 .confirmButton{
   padding: 10px;
   gap: 5px;

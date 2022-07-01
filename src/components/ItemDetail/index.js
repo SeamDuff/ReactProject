@@ -21,6 +21,10 @@ const ItemDetail = ({ product }) => {
     changeCartCount(cartQuantity);
   };
 
+  const continueShopping = () => {
+    navigate(`../${Routes.Home}`);
+  };
+
   return (
     <div className="itemDetailContainer">
       <img src={product.image} alt={product.name} width="400px" />
@@ -34,8 +38,14 @@ const ItemDetail = ({ product }) => {
         )}
         <div className="confirmContainer">
           <p>Cantidad en carrito: {cartCount}</p>
-          <div className="confirmButton">
-            <button onClick={showCart}>Terminar mi compra</button>
+          <div className="confirmButtonContainer">
+            <button className="confirmButton" onClick={showCart}>
+              Terminar mi compra
+            </button>
+
+            <button className="confirmButton" onClick={continueShopping}>
+              Agregar mas productos
+            </button>
           </div>
         </div>
       </div>
