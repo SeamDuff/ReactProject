@@ -1,3 +1,4 @@
+import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -6,15 +7,25 @@ import { CartContextProvider } from './components/CartContextProvider';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer';
 import NavBar from './components/NavBar';
+import { dataBase } from './config/firebaseConfig';
 import NavigationRoutes from './constants/routes.js';
 import { ProductsContext } from './context/ProductsContext.js';
-import { getProducts } from './services/productsService.js';
 
 function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts().then(result => setProducts(result));
+    const productsCollection = collection(dataBase, 'productos');
+
+    getDocs(productsCollection).then(result => {
+      const products = result.docs.map(res => {
+        return {
+          id: res.id,
+          ...res.data()
+        };
+      });
+      setProducts(products);
+    });
   }, []);
 
   return (

@@ -1,3 +1,4 @@
+//Ejemplo de Axios
 import axios from 'axios';
 
 export const getProducts = () => {
