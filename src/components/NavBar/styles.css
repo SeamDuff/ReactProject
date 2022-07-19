@@ -7,11 +7,12 @@
     width: 100%;
 }
 
-a{
+.navBar a{
     text-decoration: none;
     color: white;
     padding: 4px;
     font-size: medium;
+    margin-left: 20px;
 }
 
 .nav{

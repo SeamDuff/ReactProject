@@ -1,18 +1,10 @@
-.formContainer{
-  text-align: center;
-  align-items: center;
-}
-
 .formInput{
-  display: flex;
-  flex-direction: column;
-  width: 50%;
   border: 1px solid #d9d9d9;
   padding: 1.375rem;
   margin: 1rem;
 }
 
-.formFinish {
+.formEnd {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,4 +12,27 @@
       -ms-flex-pack: center;
           justify-content: center;
   padding-top: 15px;
+}
+
+.formContainer {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.formContainer label {
+  text-align: left;
+  display: block;
+}
+.formContainer h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+.formContainer input, .formContainer textarea, .formContainer select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
 }

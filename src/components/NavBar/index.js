@@ -9,13 +9,15 @@ const NavBar = () => {
     <header>
       <div className="navBar">
         <Link to="/">
-          <h1>Sevuchitas</h1>
+          <img src="/logo-sevuchitas.png" alt="logo-sevuchitas" width={100} />
         </Link>
         <nav className="nav">
           <Link to="/"> Inicio </Link>
           <Link to="/section/Nosotros"> Nosotros </Link>
           <Link to="/section/Contacto"> Contacto </Link>
-          <CartWidget />
+          <Link to="Cart">
+            <CartWidget />
+          </Link>
         </nav>
       </div>
     </header>

@@ -1,7 +1,7 @@
 import './styles.css';
 
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -15,6 +15,8 @@ const Cart = () => {
     useContext(CartContext);
 
   const [userData, setUserData] = useState({ name: '', email: '', phone: '' });
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,10 +30,26 @@ const Cart = () => {
       ...userData,
       [name]: value
     });
+    console.log(userData);
+  };
+
+  const validateFormData = values => {
+    const errors = {};
+    // const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.name) {
+      errors.name = 'Nombre es requerido';
+    }
+    if (!values.email) {
+      errors.email = 'Email es requerido';
+    }
+    if (!values.phone) {
+      errors.phone = 'Telefono es requerido';
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    setFormErrors(validateFormData(userData));
     const objOrder = {
       buyer: {
         name: userData.name,
@@ -51,9 +69,18 @@ const Cart = () => {
         title: 'Order ID ' + response.id,
         showConfirmButton: true
       });
+      setIsSubmit(true);
       clearCart();
     });
   };
+
+  useEffect(() => {
+    console.log(formErrors);
+    console.log(isSubmit);
+    // if (Object.keys(formErrors).length === 0 && isSubmit) {
+    //   console.log(userData);
+    // }
+  });
 
   return cart.length === 0 ? (
     <div className="noProductsInCart">
@@ -129,13 +156,13 @@ const Cart = () => {
           </button>
         </div>
       </div>
-      <div>
-        <UserDataForm
-          handleChange={handleChange}
-          data={userData}
-          handleSubmit={handleSubmit}
-        />
-      </div>
+
+      <UserDataForm
+        handleChange={handleChange}
+        data={userData}
+        handleSubmit={handleSubmit}
+        formErrors={formErrors}
+      />
     </>
   );
 };
