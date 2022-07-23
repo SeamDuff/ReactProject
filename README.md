@@ -45,7 +45,7 @@ $ npm start
 
 ### Imagen de la home
 
-![alt text](https://ibb.co/X3yFSkp)
+[Imagen del Home Page](https://ibb.co/X3yFSkp)
 
 ### Link al video del uso de la aplicación
 
