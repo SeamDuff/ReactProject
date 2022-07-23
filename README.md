@@ -45,7 +45,7 @@ $ npm start
 
 ### Imagen de la home
 
-![Home](/src/img/HomeSevuchitas.png "Home")
+![alt text](https://ibb.co/X3yFSkp)
 
 ### Link al video del uso de la aplicación
 
@@ -53,4 +53,4 @@ $ npm start
 
 ### Link al ecommerce
 
-[Link a la app web]()
+[Link a la app web](https://enchanting-zuccutto-f0d3db.netlify.app/)
