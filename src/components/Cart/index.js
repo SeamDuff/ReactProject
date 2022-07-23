@@ -1,7 +1,7 @@
 import './styles.css';
 
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -15,8 +15,8 @@ const Cart = () => {
     useContext(CartContext);
 
   const [userData, setUserData] = useState({ name: '', email: '', phone: '' });
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formErrors, setFormErrors] = useState();
+  // const [isValid, setIsValid] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,26 +30,27 @@ const Cart = () => {
       ...userData,
       [name]: value
     });
-    console.log(userData);
   };
 
-  const validateFormData = values => {
-    const errors = {};
-    // const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.name) {
-      errors.name = 'Nombre es requerido';
+  const validateFormData = () => {
+    if (!userData.name) {
+      setFormErrors('Nombre es requerido');
+      return false;
     }
-    if (!values.email) {
-      errors.email = 'Email es requerido';
+    if (!userData.email) {
+      setFormErrors('Email es requerido');
+      return false;
     }
-    if (!values.phone) {
-      errors.phone = 'Telefono es requerido';
+    if (!userData.phone) {
+      setFormErrors('Telefono es requerido');
+      return false;
     }
+    return true;
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    setFormErrors(validateFormData(userData));
+    const isValid = validateFormData();
     const objOrder = {
       buyer: {
         name: userData.name,
@@ -60,27 +61,27 @@ const Cart = () => {
       total: totalPrice(),
       date: serverTimestamp()
     };
-
-    const ref = collection(dataBase, 'orders');
-    addDoc(ref, objOrder).then(response => {
+    if (isValid) {
+      const ref = collection(dataBase, 'orders');
+      addDoc(ref, objOrder).then(response => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Order ID ' + response.id,
+          showConfirmButton: true
+        });
+        clearCart();
+      });
+      return;
+    } else {
       Swal.fire({
         position: 'center',
-        icon: 'success',
-        title: 'Order ID ' + response.id,
+        icon: 'error',
+        title: 'Campos sin completar',
         showConfirmButton: true
       });
-      setIsSubmit(true);
-      clearCart();
-    });
+    }
   };
-
-  useEffect(() => {
-    console.log(formErrors);
-    console.log(isSubmit);
-    // if (Object.keys(formErrors).length === 0 && isSubmit) {
-    //   console.log(userData);
-    // }
-  });
 
   return cart.length === 0 ? (
     <div className="noProductsInCart">

@@ -28,9 +28,13 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     <>
       <div className="itemCountContainer">
         <div className="countContainer">
-          <button onClick={disCount}>-</button>
+          <button className="itemCountButton" onClick={disCount}>
+            -
+          </button>
           <p>{count}</p>
-          <button onClick={addCount}>+</button>
+          <button className="itemCountButton" onClick={addCount}>
+            +
+          </button>
         </div>
         <div className="itemCountConfirmButton">
           <button onClick={sendCountToOnAdd}>Confirmar</button>

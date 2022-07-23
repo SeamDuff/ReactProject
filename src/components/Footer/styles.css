@@ -1,10 +1,11 @@
 .footerContainer{
   background: #211F1B;
   width: 100%;
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  /* position: absolute; */
+  /* height: 250px; */
+  /* bottom: 0; */
 }
 
 .topFooter{
@@ -18,8 +19,6 @@
 }
 
 .topFooterChildContainer{
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 

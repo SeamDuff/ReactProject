@@ -2,7 +2,7 @@ import './styles.css';
 
 import React from 'react';
 
-const UserDataForm = ({ handleChange, data, handleSubmit }) => {
+const UserDataForm = ({ handleChange, data, handleSubmit, formErrors }) => {
   return (
     <div className="formContainer">
       <h2>Datos del Comprador</h2>
@@ -15,7 +15,6 @@ const UserDataForm = ({ handleChange, data, handleSubmit }) => {
           onChange={handleChange}
           value={data.name}
         />
-        {/* <p>{formErrors.name}</p> */}
         <label>Email</label>
         <input
           placeholder="Email"
@@ -24,7 +23,6 @@ const UserDataForm = ({ handleChange, data, handleSubmit }) => {
           onChange={handleChange}
           value={data.email}
         />
-        {/* <p>{formErrors.email}</p> */}
         <label>Telefono</label>
         <input
           placeholder="PhoneNumber"
@@ -33,11 +31,11 @@ const UserDataForm = ({ handleChange, data, handleSubmit }) => {
           onChange={handleChange}
           value={data.phone}
         />
-        {/* <p>{formErrors.phone}</p> */}
         <div className="formEnd">
           <button className="cardBtn"> Finalizar Compra </button>
         </div>
       </form>
+      {formErrors && <h3 className="formError">{formErrors}</h3>}
     </div>
   );
 };
