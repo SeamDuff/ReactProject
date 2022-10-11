@@ -29,7 +29,7 @@ const Footer = () => {
               Whatsapp
             </a>
             <a
-              href="https://www.instagram.com/manuoreguy/"
+              href="https://www.instagram.com/seanduff1/"
               target="_blank"
               rel="noreferrer">
               Instagram
